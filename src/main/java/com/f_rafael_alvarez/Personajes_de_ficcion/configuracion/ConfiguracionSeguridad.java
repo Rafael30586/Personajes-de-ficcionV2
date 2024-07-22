@@ -23,10 +23,10 @@ public class ConfiguracionSeguridad {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.
 		csrf(csrf -> csrf.disable()).
-		authorizeHttpRequests(auth -> auth.anyRequest().authenticated())
+		authorizeHttpRequests(auth -> auth.anyRequest().authenticated().
+				requestMatchers("/login").permitAll())
 		.headers(headers -> headers.frameOptions().sameOrigin())
         .httpBasic(Customizer.withDefaults());
-		
 		
 		return http.build();
 	}*/

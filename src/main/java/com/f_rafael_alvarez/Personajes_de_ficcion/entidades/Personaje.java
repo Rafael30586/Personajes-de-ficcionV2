@@ -1,11 +1,25 @@
 package com.f_rafael_alvarez.Personajes_de_ficcion.entidades;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "personajes")
 public class Personaje {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nombre;
 	private String apodo;
+	@ManyToOne
 	private Obra obra;
+	@Column(name = "foto")
 	private String fotoUrl;
 	
 	public Personaje() {
