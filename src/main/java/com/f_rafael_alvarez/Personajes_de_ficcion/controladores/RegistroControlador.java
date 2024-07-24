@@ -20,7 +20,7 @@ public class RegistroControlador {
 	@Autowired
 	private PasswordEncoder passwordEncoder; 
 	
-	@PostMapping("/")
+	@PostMapping("/usuario") //Primer usuario de prueba: rafael, 1234, fraq86@gmail.com
 	public void guardarUsuario(@RequestParam String username,
 			@RequestParam String password, 
 			@RequestParam String email) {
@@ -29,6 +29,7 @@ public class RegistroControlador {
 		usuario.setPassword(passwordEncoder.encode(password));
 		usuario.setEmail(email);
 		usuario.setRoles(Role.USER);
+		usuarioServicio.guardarUsuario(usuario);
 	}
 
 }
