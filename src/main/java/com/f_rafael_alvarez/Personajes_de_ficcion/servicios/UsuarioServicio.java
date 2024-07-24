@@ -1,7 +1,7 @@
 package com.f_rafael_alvarez.Personajes_de_ficcion.servicios;
 
 import java.util.Collection;
-
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -63,5 +63,25 @@ class DetallesDeUsuario implements UserDetails{
 		// TODO Auto-generated method stub
 		return this.usuario.getUsername();
 	}
+	
+	@Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 	
 }
