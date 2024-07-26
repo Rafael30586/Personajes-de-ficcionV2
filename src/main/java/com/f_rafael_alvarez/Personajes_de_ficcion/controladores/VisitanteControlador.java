@@ -12,15 +12,15 @@ import com.f_rafael_alvarez.Personajes_de_ficcion.enums.Role;
 import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.UsuarioServicio;
 
 @RestController
-@RequestMapping("/registro")
-public class RegistroControlador {
+@RequestMapping("/")
+public class VisitanteControlador {
 	
 	@Autowired
 	private UsuarioServicio usuarioServicio; 
 	@Autowired
 	private PasswordEncoder passwordEncoder; 
 	
-	@PostMapping("/usuario") //Primer usuario de prueba: rafael, 1234, fraq86@gmail.com, USER
+	@PostMapping("/registro") //Primer usuario de prueba: rafael, 1234, fraq86@gmail.com, USER
 	public void guardarUsuario(@RequestParam String username,
 			@RequestParam String password, 
 			@RequestParam String email) {
