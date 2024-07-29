@@ -15,13 +15,13 @@ public class PersonajeServicio {
 	@Autowired
 	private PersonajeRepositorio personajeRepositorio; 
 	
-	public List<Personaje> devolverPersonajes() {
+	public List<Personaje> devolverTodos() {
 		List<Personaje> personajes = personajeRepositorio.findAll();
 		
 		return personajes;
 	}
 	
-	public Optional<Personaje> devolverPersonaje(Long id) {
+	public Optional<Personaje> devolverPorId(Long id) {
 		return personajeRepositorio.findById(id);
 	}
 	

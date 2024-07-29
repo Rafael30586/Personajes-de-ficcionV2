@@ -15,13 +15,13 @@ public class ObraServicio {
 	@Autowired
 	private ObraRepositorio obraRepositorio;
 	
-	public List<Obra> devolverObras(){
+	public List<Obra> devolverTodas(){
 		List<Obra> obras = obraRepositorio.findAll();
 		
 		return obras;
 	}
 	
-	public Optional<Obra> devolverObra(Long id){
+	public Optional<Obra> devolverPorId(Long id){
 		return obraRepositorio.findById(id);
 	}
 
