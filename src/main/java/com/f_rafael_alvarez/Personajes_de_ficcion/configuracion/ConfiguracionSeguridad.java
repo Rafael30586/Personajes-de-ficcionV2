@@ -28,9 +28,12 @@ public class ConfiguracionSeguridad {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.
-		authorizeHttpRequests(auth -> auth.anyRequest().hasAuthority("ROLE_USER")).
-		userDetailsService(userDetailsService).
-		formLogin(login->login.permitAll()).
+		authorizeHttpRequests(auth -> auth.requestMatchers("/visitante/**").permitAll()
+				.requestMatchers("/usuarios/**").hasAuthority("ROLE_USER"))
+		.userDetailsService(userDetailsService).
+		formLogin(login->login.loginPage("/login")
+				.defaultSuccessUrl("/usuarios/saludo",true)
+				.permitAll()).
         httpBasic(Customizer.withDefaults()).
         csrf(csrf -> csrf.disable());
 		
