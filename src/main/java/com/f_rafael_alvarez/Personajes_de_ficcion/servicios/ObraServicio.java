@@ -24,5 +24,9 @@ public class ObraServicio {
 	public Optional<Obra> devolverPorId(Long id){
 		return obraRepositorio.findById(id);
 	}
+	
+	public void guardarUna(Obra obra) {
+		obraRepositorio.save(obra);
+	}
 
 }

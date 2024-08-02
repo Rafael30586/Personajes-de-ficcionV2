@@ -29,7 +29,8 @@ public class ConfiguracionSeguridad {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.
 		authorizeHttpRequests(auth -> auth.requestMatchers("/visitante/**").permitAll()
-				.requestMatchers("/usuarios/**").hasAuthority("ROLE_USER"))
+				.requestMatchers("/usuarios/**").hasAnyAuthority("ROLE_USER","ROLE_ADMIN")
+				.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN"))		
 		.userDetailsService(userDetailsService).
 		formLogin(login->login.loginPage("/login")
 				.defaultSuccessUrl("/usuarios/saludo",true)
