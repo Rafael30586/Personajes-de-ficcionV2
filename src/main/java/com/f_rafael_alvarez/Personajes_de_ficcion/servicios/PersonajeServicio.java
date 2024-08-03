@@ -25,5 +25,9 @@ public class PersonajeServicio {
 		return personajeRepositorio.findById(id);
 	}
 	
+	public void guardarPotId(Personaje personaje) {
+		personajeRepositorio.save(personaje);
+	}
+	
 
 }

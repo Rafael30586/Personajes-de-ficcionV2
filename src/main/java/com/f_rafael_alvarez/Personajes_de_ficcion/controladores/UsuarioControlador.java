@@ -4,11 +4,16 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Obra;
+import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje;
 import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.ObraServicio;
+import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.PersonajeServicio;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -16,6 +21,8 @@ public class UsuarioControlador {
 	
 	@Autowired
 	private ObraServicio obraServicio;
+	@Autowired
+	private PersonajeServicio personajeSevicio;
 	
 	@GetMapping("/saludo")
 	public String Saludar() {
@@ -26,5 +33,16 @@ public class UsuarioControlador {
 	public List<Obra> listarObras(){
 		return obraServicio.devolverTodas();
 	}
-
+	
+	@PostMapping("/personaje/{id}")
+	public void guardarPersonaje(@PathVariable Long id, @RequestBody Personaje personaje) {
+		Obra obra = obraServicio.devolverPorId(id).get();
+		personaje.setObra(obra);
+		personajeSevicio.guardarPotId(personaje);
+	}
+	
+	@GetMapping("/personajes")
+	public List<Personaje> listarPersonajes(){
+		return personajeSevicio.devolverTodos();
+	}
 }
