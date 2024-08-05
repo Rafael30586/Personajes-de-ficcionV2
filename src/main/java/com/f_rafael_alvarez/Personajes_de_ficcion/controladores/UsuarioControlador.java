@@ -2,7 +2,11 @@ package com.f_rafael_alvarez.Personajes_de_ficcion.controladores;
 
 import java.util.List;
 
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,7 +30,12 @@ public class UsuarioControlador {
 	
 	@GetMapping("/saludo")
 	public String Saludar() {
-		return "Hola Usuario";
+		//SecurityContextHolder securityContextHolder = new SecurityContextHolder();
+		SecurityContext securityContext = SecurityContextHolder.getContext();
+		//String username = securityContextHolder.getContext().getAuthentication().getName();
+		//Collection<GrantedAuthority> auothorities = securityContext.getAuthentication().getAuthorities();
+		String username2 = securityContext.getAuthentication().getName();
+		return "Hola "+username2;
 	}
 	
 	@GetMapping("/obras")
