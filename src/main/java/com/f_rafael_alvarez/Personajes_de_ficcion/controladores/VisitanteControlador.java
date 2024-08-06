@@ -51,7 +51,7 @@ public class VisitanteControlador {
 			
 			return "Usuario registardo correctamente";
 		}
-		return "Ha ocurrido un error";
+		return "La dirección de correo electrónico no es correcta";
 	}
 	
 

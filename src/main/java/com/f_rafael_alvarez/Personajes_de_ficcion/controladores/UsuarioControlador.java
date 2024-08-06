@@ -19,6 +19,8 @@ import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje;
 import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.ObraServicio;
 import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.PersonajeServicio;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/usuarios")
 public class UsuarioControlador {
@@ -29,11 +31,11 @@ public class UsuarioControlador {
 	private PersonajeServicio personajeSevicio;
 	
 	@GetMapping("/saludo")
-	public String Saludar() {
+	public String Saludar(HttpServletRequest request) {
 		SecurityContext securityContext = SecurityContextHolder.getContext();
 		
 		String username = securityContext.getAuthentication().getName();
-		return "Hola "+username;
+		return "Hola "+username+". Número de sesión = "+request.getSession().getId();
 	}
 	
 	@GetMapping("/obras")
