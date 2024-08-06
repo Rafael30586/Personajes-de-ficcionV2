@@ -1,5 +1,8 @@
 package com.f_rafael_alvarez.Personajes_de_ficcion.controladores;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,15 +34,24 @@ public class VisitanteControlador {
 	}
 	
 	@PostMapping("/registro") //Primer usuario de prueba: rafael, 1234, fraq86@gmail.com, USER
-	public void guardarUsuario(@RequestParam String username,//Marcos -> 6789
-			@RequestParam String password, 
+	public String guardarUsuario(@RequestParam String username,//Marcos -> 6789
+			@RequestParam String password, //Gisela -> 8888
 			@RequestParam String email) {
-		Usuario usuario = new Usuario();
-		usuario.setUsername(username);
-		usuario.setPassword(passwordEncoder.encode(password));
-		usuario.setEmail(email);
-		usuario.setRoles(Role.USER);
-		usuarioServicio.guardarUsuario(usuario);
+		String regexPassowrd = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+		Pattern pattern = Pattern.compile(regexPassowrd);
+		Matcher matcher = pattern.matcher(email);
+		
+		if(matcher.matches()) {
+			Usuario usuario = new Usuario();
+			usuario.setUsername(username);
+			usuario.setPassword(passwordEncoder.encode(password));
+			usuario.setEmail(email);
+			usuario.setRoles(Role.USER);
+			usuarioServicio.guardarUsuario(usuario);
+			
+			return "Usuario registardo correctamente";
+		}
+		return "Ha ocurrido un error";
 	}
 	
 

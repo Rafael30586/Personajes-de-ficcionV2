@@ -1,8 +1,8 @@
 package com.f_rafael_alvarez.Personajes_de_ficcion.controladores;
 
-import java.util.List;
 
-import org.hibernate.mapping.Collection;
+import java.util.Collection;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
@@ -30,12 +30,10 @@ public class UsuarioControlador {
 	
 	@GetMapping("/saludo")
 	public String Saludar() {
-		//SecurityContextHolder securityContextHolder = new SecurityContextHolder();
 		SecurityContext securityContext = SecurityContextHolder.getContext();
-		//String username = securityContextHolder.getContext().getAuthentication().getName();
-		//Collection<GrantedAuthority> auothorities = securityContext.getAuthentication().getAuthorities();
-		String username2 = securityContext.getAuthentication().getName();
-		return "Hola "+username2;
+		
+		String username = securityContext.getAuthentication().getName();
+		return "Hola "+username;
 	}
 	
 	@GetMapping("/obras")
