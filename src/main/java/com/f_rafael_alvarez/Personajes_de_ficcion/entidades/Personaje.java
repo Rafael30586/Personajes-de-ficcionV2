@@ -21,16 +21,18 @@ public class Personaje {
 	private Obra obra;
 	@Column(name = "foto")
 	private String fotoUrl;
+	private String usuario;
 	
 	public Personaje() {
 	}
 
-	public Personaje(Long id, String nombre, String apodo, Obra obra, String fotoUrl) {
+	public Personaje(Long id, String nombre, String apodo, Obra obra, String fotoUrl, String usuario) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apodo = apodo;
 		this.obra = obra;
 		this.fotoUrl = fotoUrl;
+		this.usuario = usuario;
 	}
 
 	public Long getId() {
@@ -52,6 +54,10 @@ public class Personaje {
 	public String getFotoUrl() {
 		return fotoUrl;
 	}
+	
+	public String getUsuario() {
+		return usuario;
+	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -72,11 +78,15 @@ public class Personaje {
 	public void setFotoUrl(String fotoUrl) {
 		this.fotoUrl = fotoUrl;
 	}
+	
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 
 	@Override
 	public String toString() {
 		return "Personaje [id=" + id + ", nombre=" + nombre + ", apodo=" + apodo + ", obra=" + obra + ", fotoUrl="
-				+ fotoUrl + "]";
+				+ fotoUrl + ", usuario=" + usuario + "]";
 	}
-	
+
 }

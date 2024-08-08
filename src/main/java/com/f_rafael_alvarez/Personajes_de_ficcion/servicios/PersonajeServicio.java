@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.f_rafael_alvarez.Personajes_de_ficcion.dtos.ListaPersonajesDto;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje;
 import com.f_rafael_alvarez.Personajes_de_ficcion.repositorios.PersonajeRepositorio;
 
@@ -28,6 +29,21 @@ public class PersonajeServicio {
 	public void guardarPotId(Personaje personaje) {
 		personajeRepositorio.save(personaje);
 	}
+	/*
+	public List<ListaPersonajesDto> devolverTodosPorTitulo(String cadena){
+		List<Personaje> personajes = personajeRepositorio.encontrarTodosPorTitulo(cadena);
+		List<ListaPersonajesDto> personajesParaLista;
+		ListaPersonajesDto unPersonajeParaLista;
+		
+		for(Personaje p : personajes) {
+			unPersonajeParaLista = new ListaPersonajesDto(p.getId(), p.getNombre(), 
+					p.getApodo(), p.getObra().getTitulo(), 
+					p.getObra().getFechaLanzamiento().getYear(),
+					p.getObra());
+		}
+		
+		return null;
+	}*/
 	
 
 }

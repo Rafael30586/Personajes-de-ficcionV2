@@ -45,8 +45,11 @@ public class UsuarioControlador {
 	
 	@PostMapping("/personaje/{id}")
 	public void guardarPersonaje(@PathVariable Long id, @RequestBody Personaje personaje) {
+        SecurityContext securityContext = SecurityContextHolder.getContext();
+		String username = securityContext.getAuthentication().getName();
 		Obra obra = obraServicio.devolverPorId(id).get();
 		personaje.setObra(obra);
+		personaje.setUsuario(username);		
 		personajeSevicio.guardarPotId(personaje);
 	}
 	

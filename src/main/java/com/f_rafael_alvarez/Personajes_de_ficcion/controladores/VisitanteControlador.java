@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Obra;
+import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Usuario;
 import com.f_rafael_alvarez.Personajes_de_ficcion.enums.Role;
 import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.ObraServicio;
+import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.PersonajeServicio;
 import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.UsuarioServicio;
 
 @RestController
@@ -29,6 +31,8 @@ public class VisitanteControlador {
 	private PasswordEncoder passwordEncoder; 
 	@Autowired
 	private ObraServicio obraServicio;
+	@Autowired
+	private PersonajeServicio personajeServicio;
 	
 	@GetMapping("/registro")
 	public ModelAndView formularioDeRegistro() {
@@ -38,7 +42,7 @@ public class VisitanteControlador {
 		return modelAndView;
 	}
 	
-	@PostMapping("/registro") //Primer usuario de prueba: rafael, 1234, fraq86@gmail.com, USER
+	@PostMapping("/registro") //Primer usuario de prueba: rafael, 1234, fraq86@gmail.com, ADMIN
 	public String guardarUsuario(@RequestParam String username,//Marcos -> 6789
 			@RequestParam String password, //Gisela -> 8888
 			@RequestParam String email) {
@@ -60,8 +64,13 @@ public class VisitanteControlador {
 	}
 	
 	@GetMapping("/obras")
-	public List<Obra> listarTodasPorTitulo(@RequestParam String cadena){
+	public List<Obra> listarObrasPorTitulo(@RequestParam String cadena){
 		return obraServicio.devolverTodasPorTitulo(cadena);	
+	}
+	
+	@GetMapping("/personajes")
+	public List<Personaje> listarPersonajesPorTitulo(@RequestParam String cadena){
+		return null;
 	}
 	
 }
