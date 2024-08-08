@@ -1,5 +1,6 @@
 package com.f_rafael_alvarez.Personajes_de_ficcion.controladores;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Obra;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Usuario;
 import com.f_rafael_alvarez.Personajes_de_ficcion.enums.Role;
+import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.ObraServicio;
 import com.f_rafael_alvarez.Personajes_de_ficcion.servicios.UsuarioServicio;
 
 @RestController
@@ -24,6 +27,8 @@ public class VisitanteControlador {
 	private UsuarioServicio usuarioServicio; 
 	@Autowired
 	private PasswordEncoder passwordEncoder; 
+	@Autowired
+	private ObraServicio obraServicio;
 	
 	@GetMapping("/registro")
 	public ModelAndView formularioDeRegistro() {
@@ -54,5 +59,9 @@ public class VisitanteControlador {
 		return "La dirección de correo electrónico no es correcta";
 	}
 	
-
+	@GetMapping("/obras")
+	public List<Obra> listarTodasPorTitulo(@RequestParam String cadena){
+		return obraServicio.devolverTodasPorTitulo(cadena);	
+	}
+	
 }

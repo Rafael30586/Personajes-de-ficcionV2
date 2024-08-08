@@ -28,5 +28,9 @@ public class ObraServicio {
 	public void guardarUna(Obra obra) {
 		obraRepositorio.save(obra);
 	}
+	
+	public List<Obra> devolverTodasPorTitulo(String cadena){
+		return obraRepositorio.encontrarTodasPorCadena(cadena);
+	}
 
 }
