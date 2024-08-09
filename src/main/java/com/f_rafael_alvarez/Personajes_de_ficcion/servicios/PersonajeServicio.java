@@ -1,5 +1,6 @@
 package com.f_rafael_alvarez.Personajes_de_ficcion.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,21 +30,22 @@ public class PersonajeServicio {
 	public void guardarPotId(Personaje personaje) {
 		personajeRepositorio.save(personaje);
 	}
-	/*
+	
 	public List<ListaPersonajesDto> devolverTodosPorTitulo(String cadena){
 		List<Personaje> personajes = personajeRepositorio.encontrarTodosPorTitulo(cadena);
-		List<ListaPersonajesDto> personajesParaLista;
+		List<ListaPersonajesDto> personajesParaLista = new ArrayList<>();
 		ListaPersonajesDto unPersonajeParaLista;
 		
 		for(Personaje p : personajes) {
 			unPersonajeParaLista = new ListaPersonajesDto(p.getId(), p.getNombre(), 
 					p.getApodo(), p.getObra().getTitulo(), 
 					p.getObra().getFechaLanzamiento().getYear(),
-					p.getObra());
+					p.getUsuario());
+			personajesParaLista.add(unPersonajeParaLista);
 		}
 		
-		return null;
-	}*/
+		return personajesParaLista;
+	}
 	
 
 }

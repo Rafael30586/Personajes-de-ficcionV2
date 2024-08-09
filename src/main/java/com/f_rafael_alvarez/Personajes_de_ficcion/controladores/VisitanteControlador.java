@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.f_rafael_alvarez.Personajes_de_ficcion.dtos.ListaPersonajesDto;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Obra;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Usuario;
@@ -42,7 +43,7 @@ public class VisitanteControlador {
 		return modelAndView;
 	}
 	
-	@PostMapping("/registro") //Primer usuario de prueba: rafael, 1234, fraq86@gmail.com, ADMIN
+	@PostMapping("/registro") //Primer usuario de prueba: Rafael, 1234, fraq86@gmail.com, ADMIN
 	public String guardarUsuario(@RequestParam String username,//Marcos -> 6789
 			@RequestParam String password, //Gisela -> 8888
 			@RequestParam String email) {
@@ -68,9 +69,9 @@ public class VisitanteControlador {
 		return obraServicio.devolverTodasPorTitulo(cadena);	
 	}
 	
-	@GetMapping("/personajes")
-	public List<Personaje> listarPersonajesPorTitulo(@RequestParam String cadena){
-		return null;
-	}
+	@GetMapping("/personajes")//Este endpoint no esta funcionando...
+	public List<ListaPersonajesDto> listarPersonajesPorTitulo(@RequestParam String cadena){
+		return personajeServicio.devolverTodosPorTitulo(cadena);
+	}//...suele dar esta excepcion: org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.Long] to type [@org.springframework.data.jpa.repository.Query com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje]
 	
 }

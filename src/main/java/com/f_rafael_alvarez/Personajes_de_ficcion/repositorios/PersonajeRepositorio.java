@@ -12,7 +12,7 @@ import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje;
 @Repository
 public interface PersonajeRepositorio extends JpaRepository<Personaje,Long>{
 	
-	@Query("SELECT p.id, p.nombre, p.apodo, p.obra.titulo, p.obra.fechaLanzamiento FROM Personaje p WHERE p.nombre LIKE %:cadena% ORDER BY p.nombre")
+	@Query(value="SELECT p.id, p.nombre, p.apodo, p.obra.titulo, p.obra.fechaLanzamiento FROM Personaje p WHERE p.nombre LIKE %:cadena% ORDER BY p.nombre")
 	public List<Personaje> encontrarTodosPorTitulo(@Param("cadena") String cadena);
 
 }
