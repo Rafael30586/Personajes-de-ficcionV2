@@ -30,7 +30,7 @@ public class PersonajeServicio {
 	public void guardarPotId(Personaje personaje) {
 		personajeRepositorio.save(personaje);
 	}
-	
+	/*
 	public List<ListaPersonajesDto> devolverTodosPorTitulo(String cadena){
 		List<Personaje> personajes = personajeRepositorio.encontrarTodosPorTitulo(cadena);
 		List<ListaPersonajesDto> personajesParaLista = new ArrayList<>();
@@ -45,7 +45,10 @@ public class PersonajeServicio {
 		}
 		
 		return personajesParaLista;
-	}
+	}*/
 	
+	public List<ListaPersonajesDto> devolverTodosPorTitulo2(String cadena){
+		return personajeRepositorio.encontrarTodosPorTitulo2(cadena);
+	}
 
 }

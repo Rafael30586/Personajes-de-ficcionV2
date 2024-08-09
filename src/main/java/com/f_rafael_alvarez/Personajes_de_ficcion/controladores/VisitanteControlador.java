@@ -68,10 +68,15 @@ public class VisitanteControlador {
 	public List<Obra> listarObrasPorTitulo(@RequestParam String cadena){
 		return obraServicio.devolverTodasPorTitulo(cadena);	
 	}
-	
+	/*
 	@GetMapping("/personajes")//Este endpoint no esta funcionando...
 	public List<ListaPersonajesDto> listarPersonajesPorTitulo(@RequestParam String cadena){
 		return personajeServicio.devolverTodosPorTitulo(cadena);
 	}//...suele dar esta excepcion: org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.Long] to type [@org.springframework.data.jpa.repository.Query com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje]
+	*/
+	@GetMapping("/personajes2")
+	public List<ListaPersonajesDto> listarPersonajesPorTitulo2(@RequestParam String cadena){
+		return personajeServicio.devolverTodosPorTitulo2(cadena);
+	}
 	
 }
