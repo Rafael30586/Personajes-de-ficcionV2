@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.f_rafael_alvarez.Personajes_de_ficcion.dtos.ListaUsuariosDto;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Usuario;
 import com.f_rafael_alvarez.Personajes_de_ficcion.repositorios.UsuarioRepositorio;
 
@@ -24,6 +25,10 @@ public class UsuarioServicio implements UserDetailsService{
 	
 	public void guardarUsuario(Usuario usuario) {
 		usuarioRepositorio.save(usuario);
+	}
+	
+	public List<ListaUsuariosDto> devolverTodosPorNombre(String cadena){
+		return usuarioRepositorio.encontrarTodosPorNombre(cadena);
 	}
 
 	@Override
