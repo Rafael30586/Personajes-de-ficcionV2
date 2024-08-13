@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.f_rafael_alvarez.Personajes_de_ficcion.dtos.ListaPersonajesDto;
+import com.f_rafael_alvarez.Personajes_de_ficcion.dtos.PersonajeConFotoDto;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Obra;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Usuario;
@@ -68,15 +70,15 @@ public class VisitanteControlador {
 	public List<Obra> listarObrasPorTitulo(@RequestParam String cadena){
 		return obraServicio.devolverTodasPorTitulo(cadena);	
 	}
-	/*
-	@GetMapping("/personajes")//Este endpoint no esta funcionando...
-	public List<ListaPersonajesDto> listarPersonajesPorTitulo(@RequestParam String cadena){
-		return personajeServicio.devolverTodosPorTitulo(cadena);
-	}//...suele dar esta excepcion: org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [java.lang.Long] to type [@org.springframework.data.jpa.repository.Query com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje]
-	*/
-	@GetMapping("/personajes2")
+	
+	@GetMapping("/personajes")
 	public List<ListaPersonajesDto> listarPersonajesPorTitulo2(@RequestParam String cadena){
 		return personajeServicio.devolverTodosPorTitulo2(cadena);
+	}
+	
+	@GetMapping("/personaje/{id}")
+	public PersonajeConFotoDto mostrarPersonajeConFoto(@PathVariable Long id) {
+		return personajeServicio.devolverPersonajeParaMostrar(id);
 	}
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.f_rafael_alvarez.Personajes_de_ficcion.dtos.ListaPersonajesDto;
+import com.f_rafael_alvarez.Personajes_de_ficcion.dtos.PersonajeConFotoDto;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Personaje;
 import com.f_rafael_alvarez.Personajes_de_ficcion.repositorios.PersonajeRepositorio;
 
@@ -30,25 +31,13 @@ public class PersonajeServicio {
 	public void guardarPotId(Personaje personaje) {
 		personajeRepositorio.save(personaje);
 	}
-	/*
-	public List<ListaPersonajesDto> devolverTodosPorTitulo(String cadena){
-		List<Personaje> personajes = personajeRepositorio.encontrarTodosPorTitulo(cadena);
-		List<ListaPersonajesDto> personajesParaLista = new ArrayList<>();
-		ListaPersonajesDto unPersonajeParaLista;
-		
-		for(Personaje p : personajes) {
-			unPersonajeParaLista = new ListaPersonajesDto(p.getId(), p.getNombre(), 
-					p.getApodo(), p.getObra().getTitulo(), 
-					p.getObra().getFechaLanzamiento().getYear(),
-					p.getUsuario());
-			personajesParaLista.add(unPersonajeParaLista);
-		}
-		
-		return personajesParaLista;
-	}*/
 	
 	public List<ListaPersonajesDto> devolverTodosPorTitulo2(String cadena){
 		return personajeRepositorio.encontrarTodosPorTitulo2(cadena);
+	}
+	
+	public PersonajeConFotoDto devolverPersonajeParaMostrar(Long id) {
+		return personajeRepositorio.encontrarPersonajeParaMostrar(id).get();
 	}
 
 }
