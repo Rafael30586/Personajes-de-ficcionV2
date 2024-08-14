@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,8 +78,13 @@ public class VisitanteControlador {
 	}
 	
 	@GetMapping("/personaje/{id}")
-	public PersonajeConFotoDto mostrarPersonajeConFoto(@PathVariable Long id) {
-		return personajeServicio.devolverPersonajeParaMostrar(id);
+	public ModelAndView mostrarPersonajeConFoto(@PathVariable Long id, Model model) {
+		PersonajeConFotoDto personaje = personajeServicio.devolverPersonajeParaMostrar(id);
+		ModelAndView modelAndView = new ModelAndView();
+		model.addAttribute("personaje", personaje);
+		modelAndView.setViewName("personaje_individual.html");
+		
+		return modelAndView;
 	}
 	
 }
