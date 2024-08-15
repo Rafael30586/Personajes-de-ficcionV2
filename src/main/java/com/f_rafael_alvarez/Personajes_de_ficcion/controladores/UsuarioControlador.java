@@ -50,7 +50,7 @@ public class UsuarioControlador {
 		Obra obra = obraServicio.devolverPorId(id).get();
 		personaje.setObra(obra);
 		personaje.setUsuario(username);		
-		personajeSevicio.guardarPotId(personaje);
+		personajeSevicio.guardar(personaje);
 	}
 	
 	@GetMapping("/personajes")
