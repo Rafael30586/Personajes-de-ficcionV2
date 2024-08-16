@@ -62,5 +62,17 @@ public class AdministradorControlador {
 		
 		return "Personaje editado con exito";
 	}
+	
+	@PutMapping("/personaje/{id}/edicion")
+	public String editarObraDePersonaje(@PathVariable Long id, @RequestParam Long idObra) {
+		Obra obra = obraServicio.devolverPorId(idObra).get();
+		Personaje personaje = personajeServicio.devolverPorId(id).get();
+		
+		personaje.setObra(obra);
+		
+		personajeServicio.guardar(personaje);
+		
+		return "Obra del personaje editada con exito";
+	}
 
 }
