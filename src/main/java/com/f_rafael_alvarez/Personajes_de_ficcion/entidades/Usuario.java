@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class Usuario {
+public class Usuario {// Agregar campo fecha y hora de registro, podria ser un LocalDateTime
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

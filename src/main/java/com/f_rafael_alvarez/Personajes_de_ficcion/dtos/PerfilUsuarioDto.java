@@ -4,4 +4,4 @@ import java.time.LocalDate;
 
 public record PerfilUsuarioDto(String nombre, String email, LocalDate fechaRegistro, String fotoArchivo) {
 
-}
+}//Cambiar el LocalDate por un LocalDateTime
