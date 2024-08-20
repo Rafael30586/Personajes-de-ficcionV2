@@ -50,11 +50,20 @@ public class VisitanteControlador {
 	public String guardarUsuario(@RequestParam String username,//Marcos -> 6789
 			@RequestParam String password, //Gisela -> 8888
 			@RequestParam String email) {
-		String regexPassowrd = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
-		Pattern pattern = Pattern.compile(regexPassowrd);
+		String regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+		Pattern pattern = Pattern.compile(regexEmail);
 		Matcher matcher = pattern.matcher(email);
 		
-		if(matcher.matches()) {
+		String regexUsuario = "^[A-Za-z0-9_]{4,}$";
+		Pattern pattern2 = Pattern.compile(regexUsuario);
+		Matcher matcherUsername = pattern2.matcher(username);
+		Matcher matcherPassword = pattern2.matcher(password);
+		
+		if(!matcherUsername.matches()||!matcherPassword.matches()) {
+			return "Nombre de usuario o contraseña incorrecta. Solo se puede usar letras, números y guiones bajos";
+		}
+		
+		if(matcher.matches()) { 
 			Usuario usuario = new Usuario();
 			usuario.setUsername(username);
 			usuario.setPassword(passwordEncoder.encode(password));
