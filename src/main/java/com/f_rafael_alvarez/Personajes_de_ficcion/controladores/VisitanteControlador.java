@@ -71,10 +71,40 @@ public class VisitanteControlador {
 			usuario.setRoles(Role.USER);
 			usuarioServicio.guardarUsuario(usuario);
 			
-			return "Usuario registardo correctamente";
+			return "Usuario registrado correctamente";
 		}
 		return "La dirección de correo electrónico no es correcta";
 	}
+	/*
+	@PostMapping("/registro2")
+	public String registrarUsuario(@RequestParam String username
+			,@RequestParam String password
+			,@RequestParam String email) {
+		String regexEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
+		Pattern pattern = Pattern.compile(regexEmail);
+		Matcher matcher = pattern.matcher(email);
+		
+		String regexUsuario = "^[A-Za-z0-9_]{4,}$";
+		Pattern pattern2 = Pattern.compile(regexUsuario);
+		Matcher matcherUsername = pattern2.matcher(username);
+		Matcher matcherPassword = pattern2.matcher(password);
+		
+		if(!matcherUsername.matches()||!matcherPassword.matches()) {
+			return "Nombre de usuario o contraseña incorrecta. Solo se puede usar letras, números y guiones bajos";
+		}
+		
+		if(!matcher.matches()) {
+			return "La dirección de correo electrónico no es correcta";
+		}
+		
+		Usuario usuario = new Usuario();
+		usuario.setUsername(username);
+		usuario.setPassword(password);
+		usuario.setEmail(email);
+		usuarioServicio.guardar2(usuario);
+		
+		return "Usuario registrado correctamente";
+	}*/
 	
 	@GetMapping("/obras")
 	public List<Obra> listarObrasPorTitulo(@RequestParam String cadena){

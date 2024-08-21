@@ -11,10 +11,12 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.f_rafael_alvarez.Personajes_de_ficcion.dtos.ListaUsuariosDto;
 import com.f_rafael_alvarez.Personajes_de_ficcion.entidades.Usuario;
+import com.f_rafael_alvarez.Personajes_de_ficcion.enums.Role;
 import com.f_rafael_alvarez.Personajes_de_ficcion.repositorios.UsuarioRepositorio;
 
 @Service
@@ -23,9 +25,20 @@ public class UsuarioServicio implements UserDetailsService{
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 	
+	//@Autowired //No permite trabajar con un PasswordEncoder aca por circular refference...
+	//private PasswordEncoder passwordEncoder;//... lo cual se refiere a que en la clase de configuracion...
+	//...se utiliza un bean de esta clase y en esta clase se utiliza un bean de la otra
+	
 	public void guardarUsuario(Usuario usuario) {
 		usuarioRepositorio.save(usuario);
 	}
+	/*
+	public void guardar2(Usuario usuario) {
+		String password = usuario.getPassword();
+		usuario.setPassword(passwordEncoder.encode(password));
+		usuario.setRoles(Role.USER);
+		usuarioRepositorio.save(usuario);
+	}*/
 	
 	public List<ListaUsuariosDto> devolverTodosPorNombre(String cadena){
 		return usuarioRepositorio.encontrarTodosPorNombre(cadena);
